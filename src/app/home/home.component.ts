@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
 
     this.http.post(`${this.baseUrl}/user/login`, JSON.stringify(data), {headers: this.getHeaders()})
         .map(response => response.json())
-        .subscribe(result => this.globalService.user =result);
+        .subscribe(result => this.globalService.user = result);
 
   }
 

@@ -17,6 +17,12 @@ export class DashboardComponent implements OnInit {
   private AdminTabs = ['metricas_aluno', 'metricas_professor', 'gerenciamento'];
   public selectedTab: string = "sobre";
   public actualTabList = [];
+  public selectedAvaliation: string = '';
+  public avaliations = ['1', '2', '3', '4', '5'];
+  public avaliated: boolean = false;
+  public questions;
+
+  public avaliacao_professor;
 
   constructor(private http : Http, private globalService: GlobalService) {
     if(this.globalService.user['student']){
@@ -28,7 +34,6 @@ export class DashboardComponent implements OnInit {
     } else if(this.globalService.user['admin']){
       this.actualTabList = this.AdminTabs;
     }
-    this.selectedTab[0];
   }
 
   ngOnInit() {
@@ -52,14 +57,40 @@ export class DashboardComponent implements OnInit {
 
   public getQuestions(){
     // studentExam/topic/:id ()
+    this.http.get(`${this.baseUrl}/topic`, {headers: this.getHeaders()})
+        .map(response => response.json())
+        .subscribe(result => this.questions = result);
   }
 
   public getRating(){
-    // rating
+    this.http.get(`${this.baseUrl}/ratingQuestion`, {headers: this.getHeaders()})
+        .map(response => response.json())
+        .subscribe(result => this.avaliacao_professor = result);
   }
 
   public postRating(){
-    // ratingAnswer
+    let data = {
+      "rating":1,
+      "teacher":"5999083190e5c803cd9f06c0",
+      "student":"5999081890e5c803cd9f06bf",
+      "question":"59990a7fb0669e0e564f6567"
+    }
+
+    this.http.post(`${this.baseUrl}/rating`, JSON.stringify(data), {headers: this.getHeaders()})
+
+    this.avaliated = true
+  }
+
+  private getHeaders(){
+    // Configure header to http requests
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    return headers;
+  }
+
+  public avaliate(){
+    console.log(this.selectedAvaliation)
   }
 
 }

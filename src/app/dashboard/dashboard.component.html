@@ -1,5 +1,5 @@
+<!-- Tabs -->
 <div *ngIf="globalService.user['admin']">
-  <!-- Tabs -->
   <div class="container">
     <ul class="nav nav-tabs">
       <li id="metricas_professor" (click)="selectTab('metricas_professor')">
@@ -22,7 +22,6 @@
 </div>
 
 <div *ngIf="globalService.user['parent']">
-  <!-- Tabs -->
   <div class="container">
     <ul class="nav nav-tabs">
       <li id="metricas_professor" (click)="selectTab('metricas_professor')">
@@ -45,15 +44,14 @@
 </div>
 
 <div *ngIf="globalService.user['student']">
-  <!-- Tabs -->
   <div class="container">
     <ul class="nav nav-tabs">
-      <li id="avaliacao_professor" (click)="selectTab('avaliacao_professor')">
+      <li id="avaliacao_professor" (click)="selectTab('avaliacao_professor'); getRating()">
         <a href="#Avaliação">
           Avaliação de Professores
         </a>
       </li>
-      <li id="questoes" (click)="selectTab('questoes')">
+      <li id="questoes" (click)="selectTab('questoes'); getQuestions()">
         <a href="#Questões">
           Questões
         </a>
@@ -68,7 +66,6 @@
 </div>
 
 <div *ngIf="globalService.user['teacher']">
-  <!-- Tabs -->
   <div class="container">
     <ul class="nav nav-tabs">
       <li id="feedback" (click)="selectTab('feedback')">
@@ -88,4 +85,59 @@
       </li>
     </ul>
   </div>
+</div>
+
+<br>
+
+<!-- Conteúdo -->
+<div class="container" *ngIf="selectedTab == 'avaliacao_professor' && !avaliated">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{avaliacao_professor[1].question}}
+      <span class="badge badge-large badge-pill">
+        Nota
+        <form class="form-inline">
+          <div class="form-group">
+            <select class="form-control" required [(ngModel)]="selectedAvaliation" name="order">
+              <option *ngFor="let avaliation of avaliations" [value]="avaliation">{{avaliation}}</option>
+            </select>
+          </div>
+
+          <button (click)="postRating()" class="btn btn-info">Avaliar</button>
+        </form>
+      </span>
+    </li>
+  </ul>
+</div>
+
+<div class="container" *ngIf="selectedTab == 'questoes'">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let question of questions">
+      {{question.description}}
+    </li>
+  </ul>
+</div>
+
+<div class="container" *ngIf="selectedTab == 'evolucao'">
+  <img src="../assets/medalhas.png">
+</div>
+
+<div *ngIf="selectedTab == 'feedback'">
+
+</div>
+
+<div *ngIf="selectedTab == 'metricas_aluno'">
+
+</div>
+
+<div *ngIf="selectedTab == 'metricas_professor'">
+
+</div>
+
+<div *ngIf="selectedTab == 'historico'">
+
+</div>
+
+<div *ngIf="selectedTab == 'gerenciamento'">
+
 </div>
