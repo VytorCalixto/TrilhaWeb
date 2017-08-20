@@ -1,0 +1,91 @@
+<div *ngIf="globalService.user['admin']">
+  <!-- Tabs -->
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li id="metricas_professor" (click)="selectTab('metricas_professor')">
+        <a href="#Métricas">
+          Métricas dos professores
+        </a>
+      </li>
+      <li id="metricas_aluno" (click)="selectTab('metricas_aluno')">
+        <a href="#Métricas">
+          Métricas dos alunos
+        </a>
+      </li>
+      <li id="gerenciamento" (click)="selectTab('gerenciamento')">
+        <a href="#Gerênciamento">
+          Gerênciamento
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="globalService.user['parent']">
+  <!-- Tabs -->
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li id="metricas_professor" (click)="selectTab('metricas_professor')">
+        <a href="#Métricas">
+          Métricas dos professores
+        </a>
+      </li>
+      <li id="metricas_aluno" (click)="selectTab('metricas_aluno')">
+        <a href="#Métricas">
+          Métricas dos alunos
+        </a>
+      </li>
+      <li id="historico" (click)="selectTab('historico')">
+        <a href="#Histórico">
+          Histórico
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="globalService.user['student']">
+  <!-- Tabs -->
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li id="avaliacao_professor" (click)="selectTab('avaliacao_professor')">
+        <a href="#Avaliação">
+          Avaliação de Professores
+        </a>
+      </li>
+      <li id="questoes" (click)="selectTab('questoes')">
+        <a href="#Questões">
+          Questões
+        </a>
+      </li>
+      <li id="evolucao" (click)="selectTab('evolucao')">
+        <a href="#Evolução">
+          Evolução
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="globalService.user['teacher']">
+  <!-- Tabs -->
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li id="feedback" (click)="selectTab('feedback')">
+        <a href="#Feedbacks">
+          Feedbacks
+        </a>
+      </li>
+      <li id="metricas_aluno" (click)="selectTab('metricas_aluno')">
+        <a href="#Métricas">
+          Métricas dos alunos
+        </a>
+      </li>
+      <li id="historico" (click)="selectTab('historico')">
+        <a href="#Histórico">
+          Histórico
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Bem vindo ao {{title}}!
-  </h1>
+
+<div class="container" style="margin-top:20px">
+  <img src="./assets/Logo.png" height="7%" width="7%">
+  <div style="text-align:right" *ngIf="globalService.user['admin']">
+    <h3>Admin</h3>
+  </div>
+
+  <div style="text-align:right" *ngIf="globalService.user['parent']">
+    <h3>Pai</h3>
+  </div>
+
+  <div style="text-align:right" *ngIf="globalService.user['student']">
+    <h3>Aluno</h3>
+  </div>
+
+  <div style="text-align:right" *ngIf="globalService.user['teacher']">
+    <h3>Professor</h3>
+  </div>
+
+</div>
+
+<div *ngIf="globalService.user['name'] == ''">
+  <app-home></app-home>
+</div>
+
+<div *ngIf="globalService.user['name'] != ''">
+  <app-dashboard></app-dashboard>
 </div>

@@ -1,0 +1,67 @@
+<!-- Tabs -->
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li id="sobre" (click)="selectTab('sobre')">
+      <a href="#Sobre">
+        Sobre
+      </a>
+    </li>
+    <li id="parceiros" (click)="selectTab('parceiros')">
+      <a href="#Parceiros">
+        Parceiros
+      </a>
+    </li>
+    <li id="precos" (click)="selectTab('precos')">
+      <a href="#Preços">
+        Preços
+      </a>
+    </li>
+    <li id="acesso" (click)="selectTab('acesso')">
+      <a href="#Acesso">
+        Acesso
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End tabs -->
+
+<br>
+
+<div class="container" *ngIf="selectedTab == 'sobre'">
+  <h1>Quem somos?</h1>
+  <p></p>
+</div>
+
+<div class="container" *ngIf="selectedTab == 'parceiros'">
+  <h1>Parceiros</h1>
+  <p></p>
+</div>
+
+<div class="container" *ngIf="selectedTab == 'precos'">
+  <h1>Preços</h1>
+  <p></p>
+</div>
+
+<div class="container" *ngIf="selectedTab == 'acesso'">
+  <!-- Login form -->
+  <div class="container col-md-4 col-md-offset-4">
+    <form class="form-item" #formCtrl="ngForm">
+
+      <h2>Acesso</h2>
+
+      <div class="form-group">
+        <label for="email">Usuário</label>
+        <input type="text" class="form-control focus" id="email" required [(ngModel)]="username" name="email">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password">
+      </div>
+
+      <!-- Only active when all fields are filled -->
+      <button [disabled]="!formCtrl.form.valid" (click)="login()" class="btn btn-info">Acessar</button>
+
+    </form>
+  </div>
+</div>
